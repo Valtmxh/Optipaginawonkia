@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Juegos</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Lista de Juegos</h1>
+    </header>
+
+    <main id="lista-juegos">
+        <div id="juegos-container"></div>
+        <div id="paginacion"></div>
+    </main>
+
+    <footer>
+        <p>© 2025 Pixel Emu</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const tipoJuego = urlParams.get('tipo');
+
+        const juegos = {
+            alto: ["Cyberpunk 2077", "Red Dead Redemption 2", "Forza Horizon 5"],
+            medio: ["GTA V", "The Witcher 3", "Battlefield 4"],
+            bajo: ["Minecraft", "Terraria", "CS 1.6"]
+        };
+
+        let juegosPorPagina = 5;
+        let paginaActual = 1;
+        let totalPaginas = Math.ceil(juegos[tipoJuego].length / juegosPorPagina);
+
+        function cargarJuegos() {
+            let inicio = (paginaActual - 1) * juegosPorPagina;
+            let fin = inicio + juegosPorPagina;
+            let juegosMostrar = juegos[tipoJuego].slice(inicio, fin);
+
+            let contenedor = document.getElementById("juegos-container");
+            contenedor.innerHTML = "";
+            juegosMostrar.forEach(juego => {
+                let div = document.createElement("div");
+                div.innerHTML = `<p>${juego}</p>`;
+                contenedor.appendChild(div);
+            });
+
+            actualizarPaginacion();
+        }
+
+        function actualizarPaginacion() {
+            let paginacion = document.getElementById("paginacion");
+            paginacion.innerHTML = "";
+
+            for (let i = 1; i <= totalPaginas; i++) {
+                let btn = document.createElement("button");
+                btn.textContent = i;
+                btn.onclick = function () {
+                    paginaActual = i;
+                    cargarJuegos();
+                };
+                paginacion.appendChild(btn);
+            }
+        }
+
+        cargarJuegos();
+    </script>
+</body>
+</html>

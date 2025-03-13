@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 20px;
+    background: #1a1a1a;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.gif-inicio {
+    width: 100px;
+    height: auto;
+}
+
+h1 {
+    color: #00ff00;
+    text-shadow: 2px 2px 5px black;
+}
+
+.juegos-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.juegos-container img {
+    width: 200px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.juegos-container img:hover {
+    transform: scale(1.1);
+}
+
+.boton {
+    display: inline-block;
+    background: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.boton:hover {
+    background: #ff3300;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background: #1a1a1a;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
